@@ -32,6 +32,6 @@ $ rake db:seed
 </details>
 <br />
 
-At this point you should be able to run the app locally (`rails server`) and navigating to `http://localhost:3000/movies` in your browser.  If you are using c9, use `rails s -p $PORT -b $IP` and navigate to the link generated within c9.
+At this point you should be able to run the app locally in your GitPod environment (`rails server`) and view it running by navigating to the GitPod instance URL `http://gitpod-instance-id/movies` in your browser.  
 
 Next: [Part 0 (B): Preparation: deploy to Heroku](part_0_B.md)
