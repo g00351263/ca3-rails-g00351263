@@ -1,15 +1,8 @@
 ## Part 0 (A): Preparation: get RottenPotatoes running locally
 
-The actual RottenPotatoes starter app you will use is in another public repo: [saasbook/rottenpotatoes-rails-intro](https://github.com/saasbook/rottenpotatoes-rails-intro).  Fork that repo to your own GitHub account, and then
-clone your fork:
+Whenever you start working on a Rails project, the first thing you should do is to run Bundler, to make sure all the app's gems are installed.  Switch to the app's root directory (presumably `rottenpotatoes-rails-intro`) and run `bundle install`.
 
-```sh
-$ git clone git@github.com:your_github_username/rottenpotatoes-rails-intro.git
-```
-
-Whenever you start working on a Rails project, the first thing you should do is to run Bundler, to make sure all the app's gems are installed.  Switch to the app's root directory (presumably `rottenpotatoes-rails-intro`) and run `bundle install --without production` (you only need to specify `--without production` the first time, as this setting will be remembered on future runs of Bundler for this project).
-
-Finally, get the local database created:
+Now create the local database schema using the provided [migration script](../db/migrate/20150809022253_create_movies.rb):
 
 ```sh
 $ rake db:migrate
@@ -27,7 +20,7 @@ $ rake db:migrate
 </details>
 <br />
 
-Now insert "seed data" into the database--initial data items that the app needs to run:
+Now insert the [provided seed data](../db/seeds.rb) into the database (initial data items that the app needs to run). 
 
 ```sh
 $ rake db:seed
