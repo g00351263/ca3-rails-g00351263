@@ -12,12 +12,26 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
+
+    ensure_session_consistency
+    ensure_params_consistency
+
     @selected_ratings = (params[:ratings] || Hash[@all_ratings.product([1])]).keys
 
     @header_classes = {'title': '', 'release_date': ''}
     @header_classes[params[:sort]] = 'hilite'    
 
     @movies = Movie.where(rating: @selected_ratings).order(params[:sort])
+  end
+
+  def ensure_session_consistency
+    session[:ratings] = params[:ratings] if params[:ratings] and (session[:ratings].nil? or (session[:ratings] != params[:ratings]))
+    session[:sort] = params[:sort] if params[:sort] and (session[:sort].nil? or (session[:sort] != params[:sort]))
+  end
+
+  def ensure_params_consistency
+    return unless (session[:ratings] and params[:ratings].nil?) or (session[:sort] and params[:sort].nil?)
+    redirect_to movies_path(ratings: session[:ratings], sort: session[:sort]) and return
   end
 
   def new
