@@ -11,10 +11,13 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @all_ratings = Movie.all_ratings
+    @selected_ratings = (params[:ratings] || Hash[@all_ratings.product([1])]).keys
+
     @header_classes = {'title': '', 'release_date': ''}
     @header_classes[params[:sort]] = 'hilite'    
 
-    @movies = Movie.all.order(params[:sort])
+    @movies = Movie.where(rating: @selected_ratings).order(params[:sort])
   end
 
   def new
